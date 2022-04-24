@@ -154,6 +154,151 @@ namespace ConsoleApp2
             _object[2].updateOnMousePosition(0.445f, 0.285f);
             _object[2].updateOnMousePosition(0.6025f, 0.1925f);
 
+            #region Ant
+            var ant = new Asset3d(new Vector3(3, 1, 1));
+
+            // KAKI 1 ANT
+            var cube101 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Right Upper Leg
+            //cube101.createCuboid_v2(1.25f, -0.05f, -5.25f, 0.1f, 1.5f);
+            cube101.createCuboid_v2(1.25f, 5.25f, -1.85f, 0.1f, 2f);
+            cube101.rotate(Vector3.Zero, Vector3.UnitX, -75);
+            cube101.translate(0f, 0f, 0.25f);
+            var cube102 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f)); // Right Lower Leg
+            //cube102.createCuboid_v2(1.25f, -0.75f, -4.1f, 0.1f, 3.5f);
+            cube102.createCuboid_v2(1.25f, 1.3f, -4.25f, 0.1f, 3.5f);
+            cube102.rotate(Vector3.Zero, Vector3.UnitX, -25);
+            cube102.translate(0f, 0f, 0f);
+
+            var cube107 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Left Upper Leg
+            //cube107.createCuboid_v2(1.25f, -0.05f, -5.75f, 0.1f, 1.5f);
+            cube107.createCuboid_v2(1.25f, -4.75f, 1.5f, 0.1f, 2f);
+            cube107.rotate(Vector3.Zero, Vector3.UnitX, 75);
+            cube107.translate(0f, 2.25f, -1.5f);
+            var cube108 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f));
+            cube108.createCuboid_v2(1.25f, -3.375f, -5.75f, 0.1f, 3.5f); // Left Lower Leg
+            cube108.rotate(Vector3.Zero, Vector3.UnitX, 25);
+            cube108.translate(0f, 0f, 0f);
+
+            // KAKI 2 ANT
+            var cube103 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Right Upper Leg
+            cube103.createCuboid_v2(1.5f, 5.25f, -1.85f, 0.1f, 2f);
+            cube103.rotate(Vector3.Zero, Vector3.UnitX, -75);
+            cube103.translate(0f, 0f, 0.25f);
+
+            var cube104 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f)); // Right Lower Leg
+            //cube104.createCuboid_v2(1.5f, -1f, -5.25f, 0.1f, 1.5f);
+            cube104.createCuboid_v2(1.5f, 1.3f, -4.25f, 0.1f, 3.5f);
+            cube104.rotate(Vector3.Zero, Vector3.UnitX, -25);
+            cube104.translate(0f, 0f, 0f);
+
+
+            var cube109 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Left Upper Leg
+            cube109.createCuboid_v2(1.5f, -4.75f, 1.5f, 0.1f, 2f);
+            cube109.rotate(Vector3.Zero, Vector3.UnitX, 75);
+            cube109.translate(0f, 2.25f, -1.5f);
+
+            var cube110 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f));
+            //cube110.createCuboid_v2(1.5f, -1f, -5.75f, 0.1f, 1.5f);
+            cube110.createCuboid_v2(1.5f, -3.375f, -5.75f, 0.1f, 3.5f); // Left Lower Leg
+            cube110.rotate(Vector3.Zero, Vector3.UnitX, 25);
+            cube110.translate(0f, 0f, 0f);
+
+            // KAKI 3 ANT
+            var cube105 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Right Upper Leg
+            cube105.createCuboid_v2(1.75f, 5.25f, -1.85f, 0.1f, 2f);
+            cube105.rotate(Vector3.Zero, Vector3.UnitX, -75);
+            cube105.translate(0f, 0f, 0.25f);
+
+            var cube106 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f));
+            //cube106.createCuboid_v2(1.75f, -1f, -5.25f, 0.1f, 1.5f);
+            cube106.createCuboid_v2(1.75f, 1.3f, -4.25f, 0.1f, 3.5f);
+            cube106.rotate(Vector3.Zero, Vector3.UnitX, -25);
+            cube106.translate(0f, 0f, 0f);
+
+
+            var cube111 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Left Upper Leg
+            cube111.createCuboid_v2(1.75f, -4.75f, 1.5f, 0.1f, 2f);
+            cube111.rotate(Vector3.Zero, Vector3.UnitX, 75);
+            cube111.translate(0f, 2.25f, -1.5f);
+
+            var cube112 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f));
+            //cube112.createCuboid_v2(1.75f, -1f, -5.75f, 0.1f, 1.5f);
+            cube112.createCuboid_v2(1.75f, -3.375f, -5.75f, 0.1f, 3.5f); // Left Lower Leg
+            cube112.rotate(Vector3.Zero, Vector3.UnitX, 25);
+            cube112.translate(0f, 0f, 0f);
+
+
+            // BADAN ANT
+            var ellips101 = new Asset3d(new Vector3(1, 0, 0));// Gaster
+            ellips101.createEllipsoid(0f, -0.1f, -5.5f, .75f, .75f, .75f, 72, 24);
+
+            var ellips102 = new Asset3d(new Vector3(0, 1, 0));// Gaster
+            ellips102.createEllipsoid(-0.5f, -0.125f, -5.5f, .75f, .75f, .75f, 72, 24);
+
+            var ellips103 = new Asset3d(new Vector3(0, 0, 1));// Gaster
+            ellips103.createEllipsoid(-1.0f, -0.25f, -5.5f, .75f, .75f, .75f, 72, 24);
+
+            var ellips104 = new Asset3d(new Vector3(0, 1, 0));// Thorax
+            ellips104.createEllipsoid(1.5f, 0f, -5.5f, 1.25f, .5f, .5f, 72, 24);
+
+            // Kepala ANT
+            var ellips105 = new Asset3d(new Vector3(.64f, .16f, .16f));// Head
+            ellips105.createEllipsoid(3.0f, 0f, -5.5f, .5f, .375f, .5f, 72, 24);
+
+            var ellips106 = new Asset3d(new Vector3(1, 0, 1));// Right Eye
+            ellips106.createEllipsoid(3.25f, .25f, -5.25f, .125f, .125f, .125f, 72, 24);
+
+            var ellips107 = new Asset3d(new Vector3(1, 0, 1));// Left Eye
+            ellips107.createEllipsoid(3.25f, .25f, -5.75f, .125f, .125f, .125f, 72, 24);
+
+
+            // Antena ANT
+            var cube151 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Right Antenna
+            cube151.createCuboid_v2(3.0f, -0.375f, -5.125f, 0.1f, 1.5f);
+            cube151.rotate(Vector3.Zero, Vector3.UnitX, 15);
+
+            var cube152 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Left Antenna
+            cube152.createCuboid_v2(3.0f, 2.5f, -5.5f, 0.1f, 1.5f);
+            cube152.rotate(Vector3.Zero, Vector3.UnitX, -15);
+
+            var torus101 = new Asset3d(new Vector3(1f, 1f, 1f)); // Right Antenna Torus
+            torus101.createTorus(3.0625f, -5.125f, 0.375f, 0.075f, -0.05f, 100, 100);
+            torus101.rotate(Vector3.Zero, Vector3.UnitX, 105);
+
+            var torus102 = new Asset3d(new Vector3(1f, 1f, 1f)); // Left Antenna Torus
+            torus102.createTorus(3.0625f, 5.5f, 2.5f, 0.075f, -0.05f, 100, 100);
+            torus102.rotate(Vector3.Zero, Vector3.UnitX, -105);
+
+            var torus103 = new Asset3d(new Vector3(1f, 1f, 1f)); // Mouth
+            torus103.createTorus(3.5f, 0f, -5.5f, 0.1f, -0.05f, 100, 100);
+
+            ant.child.Add(cube101);
+            ant.child.Add(cube102);
+            ant.child.Add(cube103);
+            ant.child.Add(cube104);
+            ant.child.Add(cube105);
+            ant.child.Add(cube106);
+            ant.child.Add(cube107);
+            ant.child.Add(cube108);
+            ant.child.Add(cube109);
+            ant.child.Add(cube110);
+            ant.child.Add(cube111);
+            ant.child.Add(cube112);
+            ant.child.Add(ellips101);
+            ant.child.Add(ellips102);
+            ant.child.Add(ellips103);
+            ant.child.Add(ellips104);
+            ant.child.Add(ellips105);
+            ant.child.Add(ellips106);
+            ant.child.Add(ellips107);
+            ant.child.Add(cube151);
+            ant.child.Add(cube152);
+            ant.child.Add(torus101);
+            ant.child.Add(torus102);
+            ant.child.Add(torus103);
+            objectList.Add(ant);
+            #endregion
+
             // CONE
             /*var cone1 = new Asset3d(new Vector3(1f, 1f, 1f));
             cone1.createCone(0, 0, 0, 0.5f, 0.5f, 0.5f, 100, 100);
