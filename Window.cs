@@ -209,7 +209,7 @@ namespace ConsoleApp3
             cube105.rotate(Vector3.Zero, Vector3.UnitX, -75);
             cube105.translate(0f, 0f, 0.25f);
 
-            var cube106 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f));
+            var cube106 = new Asset3d(new Vector3(1.5f, 0.5f, 0.5f)); // Right Lower Leg
             //cube106.createCuboid_v2(1.75f, -1f, -5.25f, 0.1f, 1.5f);
             cube106.createCuboid_v2(1.75f, 1.3f, -4.25f, 0.1f, 3.5f);
             cube106.rotate(Vector3.Zero, Vector3.UnitX, -25);
@@ -229,16 +229,16 @@ namespace ConsoleApp3
 
 
             // BADAN ANT
-            var ellips101 = new Asset3d(new Vector3(1, 0, 0));// Gaster
+            var ellips101 = new Asset3d(new Vector3(.64f, .16f, .16f));// Gaster
             ellips101.createEllipsoid(0f, -0.1f, -5.5f, .75f, .75f, .75f, 72, 24);
 
-            var ellips102 = new Asset3d(new Vector3(0, 1, 0));// Gaster
+            var ellips102 = new Asset3d(new Vector3(.64f, .16f, .16f));// Gaster
             ellips102.createEllipsoid(-0.5f, -0.125f, -5.5f, .75f, .75f, .75f, 72, 24);
 
-            var ellips103 = new Asset3d(new Vector3(0, 0, 1));// Gaster
+            var ellips103 = new Asset3d(new Vector3(.64f, .16f, .16f));// Gaster
             ellips103.createEllipsoid(-1.0f, -0.25f, -5.5f, .75f, .75f, .75f, 72, 24);
 
-            var ellips104 = new Asset3d(new Vector3(0, 1, 0));// Thorax
+            var ellips104 = new Asset3d(new Vector3(.64f, .16f, .16f));// Thorax
             ellips104.createEllipsoid(1.5f, 0f, -5.5f, 1.25f, .5f, .5f, 72, 24);
 
             // Kepala ANT
@@ -251,6 +251,11 @@ namespace ConsoleApp3
             var ellips107 = new Asset3d(new Vector3(1, 0, 1));// Left Eye
             ellips107.createEllipsoid(3.25f, .25f, -5.75f, .125f, .125f, .125f, 72, 24);
 
+            // Stinger ANT
+            var wings101 = new Asset3d(new Vector3(0.1f, 1f, 1f));
+            wings101.createHyper(5.5f, -5.25f, -2.5f, 0.5f, 0.1f, 0.1f, 10, 10);
+            wings101.rotate(Vector3.Zero, Vector3.UnitY, 90);
+            wings101.rotate(Vector3.Zero, Vector3.UnitZ, -45);
 
             // Antena ANT
             var cube151 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f)); // Right Antenna
@@ -261,11 +266,11 @@ namespace ConsoleApp3
             cube152.createCuboid_v2(3.0f, 2.5f, -5.5f, 0.1f, 1.5f);
             cube152.rotate(Vector3.Zero, Vector3.UnitX, -15);
 
-            var torus101 = new Asset3d(new Vector3(1f, 1f, 1f)); // Right Antenna Torus
+            var torus101 = new Asset3d(new Vector3(1f, 0f, 0f)); // Right Antenna Torus
             torus101.createTorus(3.0625f, -5.125f, 0.375f, 0.075f, -0.05f, 100, 100);
             torus101.rotate(Vector3.Zero, Vector3.UnitX, 105);
 
-            var torus102 = new Asset3d(new Vector3(1f, 1f, 1f)); // Left Antenna Torus
+            var torus102 = new Asset3d(new Vector3(1f, 0f, 0f)); // Left Antenna Torus
             torus102.createTorus(3.0625f, 5.5f, 2.5f, 0.075f, -0.05f, 100, 100);
             torus102.rotate(Vector3.Zero, Vector3.UnitX, -105);
 
