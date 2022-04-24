@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp3
+namespace ConsoleApp2
 {
     class Asset3d
     {
@@ -562,7 +562,7 @@ namespace ConsoleApp3
                 tempY = radY * (float)stackAngle;
                 tempZ = radZ * (float)(stackAngle * stackAngle);
 
-                for (int j = 0; j <= sectorCount / 2; ++j)
+                for (int j = 0; j <= sectorCount; ++j)
                 {
                     sectorAngle = j * sectorStep;
 
