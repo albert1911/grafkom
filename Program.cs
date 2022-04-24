@@ -1,7 +1,7 @@
 ﻿using OpenTK.Windowing.Desktop;
 using OpenTK.Mathematics;
 
-namespace ConsoleApp2
+namespace Uts_Grafkom
 {
 	class Program
 	{
