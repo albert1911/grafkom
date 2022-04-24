@@ -8,7 +8,7 @@ using OpenTK.Mathematics;
 using LearnOpenTK.Common;
 using System.Drawing;
 
-namespace ConsoleApp2
+namespace ConsoleApp3
 {
     static class Constants
     {
@@ -299,6 +299,105 @@ namespace ConsoleApp2
             objectList.Add(ant);
             #endregion
 
+            #region ulat
+            var ulat = new Asset3d(new Vector3(1, 1, 1));
+            //badan
+            var badan1 = new Asset3d(new Vector3(0.0f, 0.5f, 0.1f));
+            badan1.createEllipsoid(-4f, 0.0f, 1.6f, 1f, 1f, 1f, 30, 24);
+            /*badan1.rotate(Vector3.Zero, Vector3.UnitX, -45);
+            badan1.translate(0f, 0f, .5f);*/
+            var badan2 = new Asset3d(new Vector3(0.0f, 0.5f, 0.1f));
+            badan2.createEllipsoid(-4f, 0.0f, 0.8f, 1f, 1f, 1f, 30, 24);
+            /*badan2.rotate(Vector3.Zero, Vector3.UnitX, -45);
+            badan2.translate(0f, 0f, .5f);*/
+            var badan3 = new Asset3d(new Vector3(0.0f, 0.5f, 0.1f));
+            badan3.createEllipsoid(-4f, 0.0f, 0.0f, 1f, 1f, 1f, 30, 24);
+
+            var badan4 = new Asset3d(new Vector3(0.5f, 1.5f, 0.5f));
+            badan4.createEllipsoid(-4f, 0.8f, 2.6f, 1f, 1f, 1f, 30, 24);
+
+            /*badan2.rotate(Vector3.Zero, Vector3.UnitX, -45);
+            badan2.translate(0f, 0f, .5f);*/
+
+            //kaca mata
+            var mata1 = new Asset3d(new Vector3(0.5f, 1.5f, 1.5f));
+            mata1.createTorus(-4.3f, 3.6f, -1f, 0.3f, 0.1f, 100, 100);
+            mata1.rotate(Vector3.Zero, Vector3.UnitX, 90);
+            var mata2 = new Asset3d(new Vector3(0.5f, 1.5f, 1.5f));
+            mata2.createTorus(-3.7f, 3.6f, -1f, 0.3f, 0.1f, 100, 100);
+            mata2.rotate(Vector3.Zero, Vector3.UnitX, 90);
+            var gagangpanjang1 = new Asset3d(new Vector3(0.0f, 0.0f, 0.0f));
+            gagangpanjang1.createCuboid_v2(-5f, 3.63f, -1f, 0.1f, 2f);
+            gagangpanjang1.rotate(Vector3.Zero, Vector3.UnitX, 90);
+            var gagangpanjang2 = new Asset3d(new Vector3(0.0f, 0.0f, 0.0f));
+            gagangpanjang2.createCuboid_v2(-3f, 3.63f, -1f, 0.1f, 2f);
+            gagangpanjang2.rotate(Vector3.Zero, Vector3.UnitX, 90);
+
+            var gagangkecil1 = new Asset3d(new Vector3(0.0f, 0.0f, 0.0f));
+            gagangkecil1.createCuboid_v3(-4.8f, 1f, 3.6f, 0.2f);
+            var gagangkecil2 = new Asset3d(new Vector3(0.0f, 0.0f, 0.0f));
+            gagangkecil2.createCuboid_v3(-3.2f, 1f, 3.6f, 0.2f);
+            //gagangkecil1.rotate(Vector3.Zero, Vector3.UnitX,360);
+            //kaki
+            var kaki1 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki1.createEllipsoid(-4.5f, -1f, 0f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki1.rotate(Vector3.Zero, Vector3.UnitX, 45);
+            var kaki2 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki2.createEllipsoid(-3.5f, -1f, 0f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki2.rotate(Vector3.Zero, Vector3.UnitX, 45);
+            var kaki3 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki3.createEllipsoid(-4.5f, -1f, 0.5f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki3.rotate(Vector3.Zero, Vector3.UnitX, 40);
+            var kaki4 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki4.createEllipsoid(-3.5f, -1f, 0.5f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki4.rotate(Vector3.Zero, Vector3.UnitX, 40);
+            var kaki5 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki5.createEllipsoid(-4.5f, -0.5f, 1f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki5.rotate(Vector3.Zero, Vector3.UnitX, 35);
+            var kaki6 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki6.createEllipsoid(-3.5f, -0.5f, 1f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki6.rotate(Vector3.Zero, Vector3.UnitX, 35);
+            var kaki7 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki7.createEllipsoid(-4.5f, -0.2f, 1.5f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki7.rotate(Vector3.Zero, Vector3.UnitX, 35);
+            var kaki8 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki8.createEllipsoid(-3.5f, -0.2f, 1.5f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki8.rotate(Vector3.Zero, Vector3.UnitX, 35);
+            var kaki9 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki9.createEllipsoid(-4.5f, 0f, 2f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki9.rotate(Vector3.Zero, Vector3.UnitX, 35);
+            var kaki10 = new Asset3d(new Vector3(0.0f, 0.8f, 0.3f));
+            kaki10.createEllipsoid(-3.5f, 0f, 2f, 0.2f, 0.5f, 0.2f, 10, 20);
+            kaki10.rotate(Vector3.Zero, Vector3.UnitX, 35);
+            //mulut 
+            var mulut = new Asset3d(new Vector3(0.4f, 0.4f, 0.4f));
+            mulut.createCone(-4f, -3.6f, 0.5f, 0.2f, 0f, 0.1f, 10, 20);
+            mulut.rotate(Vector3.Zero, Vector3.UnitX, -90);
+
+            ulat.child.Add(badan1);
+            ulat.child.Add(badan2);
+            ulat.child.Add(badan3);
+            ulat.child.Add(badan4);
+            ulat.child.Add(mata1);
+            ulat.child.Add(mata2);
+            ulat.child.Add(gagangpanjang1);
+            ulat.child.Add(gagangpanjang2);
+            ulat.child.Add(gagangkecil1);
+            ulat.child.Add(gagangkecil2);
+            ulat.child.Add(mulut);
+            ulat.child.Add(kaki1);
+            ulat.child.Add(kaki2);
+            ulat.child.Add(kaki3);
+            ulat.child.Add(kaki4);
+            ulat.child.Add(kaki5);
+            ulat.child.Add(kaki6);
+            ulat.child.Add(kaki7);
+            ulat.child.Add(kaki8);
+            ulat.child.Add(kaki9);
+            ulat.child.Add(kaki10);
+            //ulat.child.Add(bawah);
+            objectList.Add(ulat);
+            #endregion
             // CONE
             /*var cone1 = new Asset3d(new Vector3(1f, 1f, 1f));
             cone1.createCone(0, 0, 0, 0.5f, 0.5f, 0.5f, 100, 100);
@@ -353,7 +452,7 @@ namespace ConsoleApp2
             {
                 objectList[0].child[14].rotate(Vector3.Zero, Vector3.UnitZ, -100 * time);
             }*/
-            
+
             if (_object[0].getVerticesLength())
             {
                 List<float> _verticesTemp = _object[0].createCurveBezier();
@@ -487,7 +586,7 @@ namespace ConsoleApp2
                 _camera.Position -= _objectPos;
                 _camera.Position = Vector3.Transform(
                     _camera.Position,
-                    generateArbRotationMatrix(axis, _objectPos, 
+                    generateArbRotationMatrix(axis, _objectPos,
                     _rotationSpeed).ExtractRotation());
                 _camera.Position += _objectPos;
                 _camera._front = -Vector3.Normalize(_camera.Position - _objectPos);

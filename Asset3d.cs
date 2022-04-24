@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uts_Grafkom
+namespace ConsoleApp3
 {
     class Asset3d
     {
@@ -21,7 +21,7 @@ namespace Uts_Grafkom
         private int _elementBufferObject;
 
         private Shader _shader;
-
+        public Vector3 _centerPosition;
         private Matrix4 model = Matrix4.Identity;   // Model Matrix      ==> Matrix ini yang akan berubah saat terjadi transformasi
         private Matrix4 view;                       // View Matrix       ==> Matrix ini menentukan arah pandang 'kamera'
         private Matrix4 projection;                 // Projection Matrix ==> Matrix ini menentukan jenis projection, kamera game cenderung menggunakan kamera perspective.
@@ -31,11 +31,10 @@ namespace Uts_Grafkom
         public List<Vector3> _euler = new List<Vector3>();  // Sudut lokal, relatif terhadap objek yang bersangkutan.
         public Vector3 objectCenter = Vector3.Zero;         // Titik tengah objek
 
-        public List<Asset3d> child = new List<Asset3d>();   // Sistem Hierarchical Object ==> List untuk menampung objek - objek child.
+        public List<Asset3d> child = new List<Asset3d>();
+        // Sistem Hierarchical Object ==> List untuk menampung objek - objek child.
 
         /*float[] _vertices = { };
-        uint[] _indices = { };
-        float[] _colors = { };
         int indexs;
         int[] _pascal;*/
 
@@ -104,6 +103,56 @@ namespace Uts_Grafkom
             {
                 i.render(camera_view, camera_projection);
             }
+
+            /*List<int> getRow(int rowIndex)
+            {
+                List<int> currow = new List<int>();
+                //------
+                currow.Add(1);
+                if (rowIndex == 0)
+                {
+                    return currow;
+                }
+                //-----
+                List<int> prev = getRow(rowIndex - 1);
+                for (int i = 1; i < prev.Count; i++)
+                {
+                    int curr = prev[i - 1] + prev[i];
+                    currow.Add(curr);
+                }
+                currow.Add(1);
+                return currow;
+            }
+
+            List<float> createCurveBezier()
+            {
+                List<float> _vertices_bezier = new List<float>();
+                List<int> pascal = getRow(indexs - 1);
+                _pascal = pascal.ToArray();
+                for (float t = 0; t <= 1.0f; t += 0.01f)
+                {
+                    Vector2 p = getP(indexs, t);
+                    _vertices_bezier.Add(p.X);
+                    _vertices_bezier.Add(p.Y);
+                    _vertices_bezier.Add(0);
+                }
+
+                return _vertices_bezier;
+            }
+
+            Vector2 getP(int n, float t)
+            {
+                Vector2 p = new Vector2(0, 0);
+                float k;
+                for (int i = 0; i < n; i++)
+                {
+                    k = (float)Math.Pow((1 - t), n - 1 - i)
+                        * (float)Math.Pow(t, i) * _pascal[i];
+                    p.X += k * _vertices[i * 3];
+                    p.Y += k * _vertices[i * 3 + 1];
+                }
+                return p;
+            }*/
         }
 
         /// <summary>
@@ -168,89 +217,6 @@ namespace Uts_Grafkom
             //Titik 8
             temp_vector.X = x_ + length / 2.0f;
             temp_vector.Y = y_ - length / 2.0f;
-            temp_vector.Z = z_ + length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            var tempIndices = new List<uint>
-            {
-				//Back
-				1, 2, 0,
-                2, 1, 3,
-				
-				//Top
-				5, 0, 4,
-                0, 5, 1,
-
-				//Right
-				5, 3, 1,
-                3, 5, 7,
-
-				//Left
-				0, 6, 4,
-                6, 0, 2,
-
-				//Front
-				4, 7, 5,
-                7, 4, 6,
-
-				//Bottom
-				3, 6, 2,
-                6, 3, 7
-            };
-            vertices = tempVertices;
-            indices = tempIndices;
-        }
-
-        public void createCuboid_v2(float x_, float y_, float z_, float length, float extra)
-        {
-            var tempVertices = new List<Vector3>();
-            Vector3 temp_vector;
-
-            //Titik 1
-            temp_vector.X = x_ - length / 2.0f;
-            temp_vector.Y = y_ + length / 2.0f;
-            temp_vector.Z = z_ - length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 2
-            temp_vector.X = x_ + length / 2.0f;
-            temp_vector.Y = y_ + length / 2.0f;
-            temp_vector.Z = z_ - length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 3
-            temp_vector.X = x_ - length / 2.0f;
-            temp_vector.Y = y_ - (length + extra) / 2.0f;
-            temp_vector.Z = z_ - length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 4
-            temp_vector.X = x_ + length / 2.0f;
-            temp_vector.Y = y_ - (length + extra) / 2.0f;
-            temp_vector.Z = z_ - length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 5
-            temp_vector.X = x_ - length / 2.0f;
-            temp_vector.Y = y_ + length / 2.0f;
-            temp_vector.Z = z_ + length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 6
-            temp_vector.X = x_ + length / 2.0f;
-            temp_vector.Y = y_ + length / 2.0f;
-            temp_vector.Z = z_ + length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 7
-            temp_vector.X = x_ - length / 2.0f;
-            temp_vector.Y = y_ - (length + extra) / 2.0f;
-            temp_vector.Z = z_ + length / 2.0f;
-            tempVertices.Add(temp_vector);
-
-            //Titik 8
-            temp_vector.X = x_ + length / 2.0f;
-            temp_vector.Y = y_ - (length + extra) / 2.0f;
             temp_vector.Z = z_ + length / 2.0f;
             tempVertices.Add(temp_vector);
 
@@ -366,6 +332,107 @@ namespace Uts_Grafkom
             indices = tempIndices;
         }
 
+        public void createCuboid_v2(float x_, float y_, float z_, float length, float extra)
+        {
+            var tempVertices = new List<Vector3>();
+            Vector3 temp_vector;
+
+            //Titik 1
+            temp_vector.X = x_ - length / 2.0f;
+            temp_vector.Y = y_ + length / 2.0f;
+            temp_vector.Z = z_ - length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 2
+            temp_vector.X = x_ + length / 2.0f;
+            temp_vector.Y = y_ + length / 2.0f;
+            temp_vector.Z = z_ - length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 3
+            temp_vector.X = x_ - length / 2.0f;
+            temp_vector.Y = y_ - (length + extra) / 2.0f;
+            temp_vector.Z = z_ - length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 4
+            temp_vector.X = x_ + length / 2.0f;
+            temp_vector.Y = y_ - (length + extra) / 2.0f;
+            temp_vector.Z = z_ - length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 5
+            temp_vector.X = x_ - length / 2.0f;
+            temp_vector.Y = y_ + length / 2.0f;
+            temp_vector.Z = z_ + length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 6
+            temp_vector.X = x_ + length / 2.0f;
+            temp_vector.Y = y_ + length / 2.0f;
+            temp_vector.Z = z_ + length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 7
+            temp_vector.X = x_ - length / 2.0f;
+            temp_vector.Y = y_ - (length + extra) / 2.0f;
+            temp_vector.Z = z_ + length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            //Titik 8
+            temp_vector.X = x_ + length / 2.0f;
+            temp_vector.Y = y_ - (length + extra) / 2.0f;
+            temp_vector.Z = z_ + length / 2.0f;
+            tempVertices.Add(temp_vector);
+
+            var tempIndices = new List<uint>
+            {
+				//Back
+				1, 2, 0,
+                2, 1, 3,
+				
+				//Top
+				5, 0, 4,
+                0, 5, 1,
+
+				//Right
+				5, 3, 1,
+                3, 5, 7,
+
+				//Left
+				0, 6, 4,
+                6, 0, 2,
+
+				//Front
+				4, 7, 5,
+                7, 4, 6,
+
+				//Bottom
+				3, 6, 2,
+                6, 3, 7
+            };
+            vertices = tempVertices;
+            indices = tempIndices;
+        }
+
+        /*public void createEllipsoid(float radiusX, float radiusY, float radiusZ, float _x, float _y, float _z)
+        {
+            _centerPosition.X = _x;
+            _centerPosition.Y = _y;
+            _centerPosition.Z = _z;
+            float pi = (float)Math.PI;
+            Vector3 temp_vector;
+            for (float u = -pi; u <= pi; u += pi / 300)
+            {
+                for (float v = -pi / 2; v <= pi / 2; v += pi / 300)
+                {
+                    temp_vector.X = _x + (float)Math.Cos(v) * (float)Math.Cos(u) * radiusX;
+                    temp_vector.Y = _y + (float)Math.Cos(v) * (float)Math.Sin(u) * radiusY;
+                    temp_vector.Z = _z + (float)Math.Sin(v) * radiusZ;
+                    vertices.Add(temp_vector);
+                }
+            }
+        }*/
         public void createEllipsoid(float x, float y, float z, float radX, float radY, float radZ, float sectorCount, float stackCount)
         {
             objectCenter = new Vector3(x, y, z);
@@ -380,16 +447,16 @@ namespace Uts_Grafkom
             {
                 stackAngle = pi / 2 - i * stackStep;
                 tempX = radX * (float)Math.Cos(stackAngle);
-                tempY = radY * (float)Math.Cos(stackAngle);
-                tempZ = radZ * (float)Math.Sin(stackAngle);
+                tempY = radY * (float)Math.Sin(stackAngle);
+                tempZ = radZ * (float)Math.Cos(stackAngle);
 
                 for (int j = 0; j <= sectorCount; ++j)
                 {
                     sectorAngle = j * sectorStep;
 
                     temp_vector.X = x + tempX * (float)Math.Cos(sectorAngle);
-                    temp_vector.Y = y + tempY * (float)Math.Sin(sectorAngle);
-                    temp_vector.Z = z + tempZ;
+                    temp_vector.Y = y + tempY;
+                    temp_vector.Z = z + tempZ * (float)Math.Sin(sectorAngle);
 
                     vertices.Add(temp_vector);
                 }
@@ -495,7 +562,7 @@ namespace Uts_Grafkom
                 tempY = radY * (float)stackAngle;
                 tempZ = radZ * (float)(stackAngle * stackAngle);
 
-                for (int j = 0; j <= sectorCount; ++j)
+                for (int j = 0; j <= sectorCount / 2; ++j)
                 {
                     sectorAngle = j * sectorStep;
 
@@ -608,14 +675,10 @@ namespace Uts_Grafkom
 
             objectCenter = getRotationResult(pivot, vector, radAngle, objectCenter);
 
-            /*Console.WriteLine(objectCenter[0]);*/
-
             foreach (var i in child)
             {
-                i.rotate(pivot, vector, angle);   
+                i.rotate(pivot, vector, angle);
             }
-
-            /*return objectCenter[0];*/
         }
 
         public Vector3 getRotationResult(Vector3 pivot, Vector3 vector, float angle, Vector3 point, bool isEuler = false)
