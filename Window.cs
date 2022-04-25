@@ -8,7 +8,7 @@ using OpenTK.Mathematics;
 using LearnOpenTK.Common;
 using System.Drawing;
 
-namespace ConsoleApp3
+namespace ConsoleApp2
 {
     static class Constants
     {
@@ -17,7 +17,7 @@ namespace ConsoleApp3
     class Window : GameWindow
     {
         List<Asset3d> objectList = new List<Asset3d>();
-        
+
         // utk animasi terbang
         float a = 0;
         float b = 0;
@@ -155,20 +155,6 @@ namespace ConsoleApp3
 
             cockroach.rotate(Vector3.Zero, Vector3.UnitY, -75);
             #endregion
-
-            _object[0] = new Asset2d(new float[1000], new uint[] { }, new float[] { 1, 1, 1, 1 });
-            _object[1] = new Asset2d(new float[] { }, new uint[] { }, new float[] { 1, 1, 1, 1 });
-            _object[0].updateOnMousePosition(0.305f, -0.045f);
-            _object[0].updateOnMousePosition(0.375f, 0.031f);
-            _object[0].updateOnMousePosition(0.645f, 0.285f);
-            _object[0].updateOnMousePosition(0.8025f, 0.1925f);
-
-            _object[2] = new Asset2d(new float[1000], new uint[] { }, new float[] { 1, 1, 1, 1 });
-            _object[3] = new Asset2d(new float[] { }, new uint[] { }, new float[] { 1, 1, 1, 1 });
-            _object[2].updateOnMousePosition(0.255f, -0.045f);
-            _object[2].updateOnMousePosition(0.175f, 0.031f);
-            _object[2].updateOnMousePosition(0.445f, 0.285f);
-            _object[2].updateOnMousePosition(0.6025f, 0.1925f);
 
             #region Ant
             var ant = new Asset3d(new Vector3(3, 1, 1));
@@ -317,7 +303,7 @@ namespace ConsoleApp3
             objectList.Add(ant);
             #endregion
 
-            #region ulat
+            #region Ulat
             var ulat = new Asset3d(new Vector3(1, 1, 1));
             //badan
             var badan1 = new Asset3d(new Vector3(0.0f, 0.5f, 0.1f));
@@ -429,12 +415,6 @@ namespace ConsoleApp3
             foreach (Asset3d i in objectList)
             {
                 i.load(Size.X, Size.Y);
-            }
-
-            for (int i = 0; i < _object.Length; i++)
-            {
-                _object[i].load(Constants.path + "shader2.vert",
-                    Constants.path + "shader2.frag");
             }
         }
 
