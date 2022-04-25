@@ -8,7 +8,7 @@ using OpenTK.Mathematics;
 using LearnOpenTK.Common;
 using System.Drawing;
 
-namespace ConsoleApp2
+namespace ConsoleApp3
 {
     static class Constants
     {
@@ -268,11 +268,11 @@ namespace ConsoleApp2
             torus102.createTorus(3.0625f, 5.5f, 2.5f, 0.09f, -0.05f, 100, 100);
             torus102.rotate(Vector3.Zero, Vector3.UnitX, -105);
 
-            var torus103 = new Asset3d(new Vector3(1f, 1f, 1f)); // Mouth
+            var torus103 = new Asset3d(new Vector3(0f, 0f, 1f)); // Mouth
             torus103.createTorusV2(3.5f, 0f, 5.65f, 0.1f, -0.05f, 100, 100);
             torus103.rotate(Vector3.Zero, Vector3.UnitX, -180);
 
-            var torus104 = new Asset3d(new Vector3(1f, 1f, 1f)); // Mouth
+            var torus104 = new Asset3d(new Vector3(0f, 0f, 1f)); // Mouth
             torus104.createTorusV2(3.5f, 0f, -5.45f, 0.1f, -0.05f, 100, 100);
 
             ant.child.Add(cube101);
@@ -431,11 +431,11 @@ namespace ConsoleApp2
             foreach (Asset3d i in objectList)
             {
                 i.render(_camera.GetViewMatrix(), _camera.GetProjectionMatrix());
-                i.rotate(Vector3.Zero, Vector3.UnitY, 45 * time);
-                /*foreach (Asset3d j in i.child)
-                {
-                    j.rotate(Vector3.Zero, Vector3.UnitY, 10 * time);
-                }*/
+                /*  i.rotate(Vector3.Zero, Vector3.UnitY, 45 * time);
+                  foreach (Asset3d j in i.child)
+                  {
+                      j.rotate(Vector3.Zero, Vector3.UnitY, 10 * time);
+                  }*/
             }
 
             if (a >= 0 && a <= 500)
@@ -444,18 +444,48 @@ namespace ConsoleApp2
                 {
                     objectList[0].child[1].rotate(objectList[0].child[1].objectCenter, Vector3.UnitZ, -100 * time);
                     objectList[0].child[2].rotate(objectList[0].child[2].objectCenter, Vector3.UnitZ, 100 * time);
+                    //ulat
+                    objectList[2].child[11].rotate(objectList[2].child[11].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[12].rotate(objectList[2].child[12].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[13].rotate(objectList[2].child[13].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[14].rotate(objectList[2].child[14].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[15].rotate(objectList[2].child[15].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[16].rotate(objectList[2].child[16].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[17].rotate(objectList[2].child[17].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[18].rotate(objectList[2].child[18].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[19].rotate(objectList[2].child[19].objectCenter, Vector3.UnitY, -150 * time);
+                    objectList[2].child[20].rotate(objectList[2].child[20].objectCenter, Vector3.UnitY, -150 * time);
+                    // ANT
+                    objectList[1].child[23].rotate(objectList[1].child[23].objectCenter, Vector3.UnitY, -100 * time);
+                    objectList[1].child[24].rotate(objectList[1].child[24].objectCenter, Vector3.UnitY, 100 * time);
                     if (b <= 10)
                     {
                         objectList[0].translate(0, 0.00025f, 0);
+                        objectList[2].translate(0.00025f, 0, 0);
                     }
                 }
                 else
                 {
                     objectList[0].child[1].rotate(objectList[0].child[1].objectCenter, Vector3.UnitZ, 100 * time);
                     objectList[0].child[2].rotate(objectList[0].child[2].objectCenter, Vector3.UnitZ, -100 * time);
+                    //ulat
+                    objectList[2].child[11].rotate(objectList[2].child[11].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[12].rotate(objectList[2].child[12].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[13].rotate(objectList[2].child[13].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[14].rotate(objectList[2].child[14].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[15].rotate(objectList[2].child[15].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[16].rotate(objectList[2].child[16].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[17].rotate(objectList[2].child[17].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[18].rotate(objectList[2].child[18].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[19].rotate(objectList[2].child[19].objectCenter, Vector3.UnitY, 150 * time);
+                    objectList[2].child[20].rotate(objectList[2].child[20].objectCenter, Vector3.UnitY, 150 * time);
+                    // ANT
+                    objectList[1].child[23].rotate(objectList[1].child[23].objectCenter, Vector3.UnitY, 100 * time);
+                    objectList[1].child[24].rotate(objectList[1].child[24].objectCenter, Vector3.UnitY, -100 * time);
                     if (b <= 10)
                     {
                         objectList[0].translate(0, 0.0005f, 0);
+                        objectList[2].translate(0.0005f, 0, 0);
                     }
                 }
             }
