@@ -34,9 +34,74 @@ namespace ConsoleApp2
         public List<Asset3d> child = new List<Asset3d>();
         // Sistem Hierarchical Object ==> List untuk menampung objek - objek child.
 
-        /*float[] _vertices = { };
-        int indexs;
-        int[] _pascal;*/
+        private int index;
+        private float[] verticesCurve;
+        private int[] _pascal;
+
+        // CURVE BEZIER 3D
+        public void prepareVertices()
+        {
+            verticesCurve = new float[1080];
+            index = 0;
+        }
+        public void setControlCoordinate(float x, float y, float z)
+        {
+            verticesCurve[index * 3] = x;
+            verticesCurve[index * 3 + 1] = y;
+            verticesCurve[index * 3 + 2] = z;
+            index++;
+        }
+        public List<int> getRow(int rowIndex)
+        {
+            List<int> currow = new List<int>();
+            //------
+            currow.Add(1);
+            if (rowIndex == 0)
+            {
+                return currow;
+            }
+            //-----
+            List<int> prev = getRow(rowIndex - 1);
+            for (int i = 1; i < prev.Count; i++)
+            {
+                int curr = prev[i - 1] + prev[i];
+                currow.Add(curr);
+            }
+            currow.Add(1);
+            return currow;
+
+        }
+        public List<Vector3> createCurveBazier()
+        {
+            List<Vector3> _verticesBazier = new List<Vector3>();
+            List<int> pascal = getRow(index - 1);
+            _pascal = pascal.ToArray();
+            for (float t = 0; t <= 1; t += 0.01f)
+            {
+                Vector3 p = getP(index, t);
+                _verticesBazier.Add(p);
+            }
+            return _verticesBazier;
+        }
+        public Vector3 getP(int n, float t)
+        {
+            Vector3 p = new Vector3(0, 0, 0);
+            float k;
+            for (int i = 0; i < n; i++)
+            {
+                k = (float)Math.Pow((1 - t), n - 1 - i) * (float)Math.Pow(t, i) * _pascal[i];
+                p.X += k * verticesCurve[i * 3];
+                p.Y += k * verticesCurve[i * 3 + 1];
+                p.Z += k * verticesCurve[i * 3 + 2];
+
+            }
+            return p;
+        }
+        public void setVertices(List<Vector3> temp)
+        {
+            vertices = temp;
+        }
+        // END CURVE BEZIER 3D
 
         public Asset3d(Vector3 color)
         {
@@ -103,56 +168,6 @@ namespace ConsoleApp2
             {
                 i.render(camera_view, camera_projection);
             }
-
-            /*List<int> getRow(int rowIndex)
-            {
-                List<int> currow = new List<int>();
-                //------
-                currow.Add(1);
-                if (rowIndex == 0)
-                {
-                    return currow;
-                }
-                //-----
-                List<int> prev = getRow(rowIndex - 1);
-                for (int i = 1; i < prev.Count; i++)
-                {
-                    int curr = prev[i - 1] + prev[i];
-                    currow.Add(curr);
-                }
-                currow.Add(1);
-                return currow;
-            }
-
-            List<float> createCurveBezier()
-            {
-                List<float> _vertices_bezier = new List<float>();
-                List<int> pascal = getRow(indexs - 1);
-                _pascal = pascal.ToArray();
-                for (float t = 0; t <= 1.0f; t += 0.01f)
-                {
-                    Vector2 p = getP(indexs, t);
-                    _vertices_bezier.Add(p.X);
-                    _vertices_bezier.Add(p.Y);
-                    _vertices_bezier.Add(0);
-                }
-
-                return _vertices_bezier;
-            }
-
-            Vector2 getP(int n, float t)
-            {
-                Vector2 p = new Vector2(0, 0);
-                float k;
-                for (int i = 0; i < n; i++)
-                {
-                    k = (float)Math.Pow((1 - t), n - 1 - i)
-                        * (float)Math.Pow(t, i) * _pascal[i];
-                    p.X += k * _vertices[i * 3];
-                    p.Y += k * _vertices[i * 3 + 1];
-                }
-                return p;
-            }*/
         }
 
         /// <summary>
@@ -331,7 +346,6 @@ namespace ConsoleApp2
             vertices = tempVertices;
             indices = tempIndices;
         }
-
         public void createCuboid_v2(float x_, float y_, float z_, float length, float extra)
         {
             var tempVertices = new List<Vector3>();
@@ -414,7 +428,6 @@ namespace ConsoleApp2
             vertices = tempVertices;
             indices = tempIndices;
         }
-
         /*public void createEllipsoid(float radiusX, float radiusY, float radiusZ, float _x, float _y, float _z)
         {
             _centerPosition.X = _x;
@@ -487,7 +500,6 @@ namespace ConsoleApp2
                 }
             }
         }
-
         public void createCone(float x, float y, float z, float radX, float radY, float radZ, float sectorCount, float stackCount)
         {
             objectCenter = new Vector3(x, y, z);
@@ -544,7 +556,6 @@ namespace ConsoleApp2
                 }
             }
         }
-
         public void createHyper(float x, float y, float z, float radX, float radY, float radZ, float sectorCount, float stackCount)
         {
             objectCenter = new Vector3(x, y, z);
@@ -599,7 +610,6 @@ namespace ConsoleApp2
                 }
             }
         }
-
         public void createTorus(float x, float y, float z, float radMajor, float radMinor, float sectorCount, float stackCount)
         {
             objectCenter = new Vector3(x, y, z);
@@ -648,7 +658,54 @@ namespace ConsoleApp2
                 }
             }
         }
+        public void createTorusV2(float x, float y, float z, float radMajor, float radMinor, float sectorCount, float stackCount)
+        {
+            objectCenter = new Vector3(x, y, z);
 
+            float pi = (float)Math.PI;
+            Vector3 temp_vector;
+            stackCount *= 2;
+            float sectorStep = 2 * pi / sectorCount;
+            float stackStep = 2 * pi / stackCount;
+            float sectorAngle, stackAngle, tempX, tempY, tempZ;
+
+            for (int i = 0; i <= stackCount; ++i)
+            {
+                stackAngle = pi / 2 - i * stackStep;
+                tempX = radMajor + radMinor * (float)Math.Cos(stackAngle);
+                tempY = radMinor * (float)Math.Sin(stackAngle);
+                tempZ = radMajor + radMinor * (float)Math.Cos(stackAngle);
+
+                for (int j = 0; j <= sectorCount; ++j)
+                {
+                    sectorAngle = j * sectorStep;
+
+                    temp_vector.X = x + tempX * (float)Math.Cos(sectorAngle);
+                    temp_vector.Y = y + tempY;
+                    temp_vector.Z = z + tempZ * (float)Math.Sin(sectorAngle);
+
+                    vertices.Add(temp_vector);
+                }
+            }
+
+            uint k1, k2;
+            for (int i = 0; i < stackCount; ++i)
+            {
+                k1 = (uint)(i * (sectorCount + 1));
+                k2 = (uint)(k1 + sectorCount + 1);
+
+                for (int j = 0; j < sectorCount / 2; ++j, ++k1, ++k2)
+                {
+                    indices.Add(k1);
+                    indices.Add(k2);
+                    indices.Add(k1 + 1);
+
+                    indices.Add(k1 + 1);
+                    indices.Add(k2);
+                    indices.Add(k2 + 1);
+                }
+            }
+        }
         #endregion
 
         #region transforms
