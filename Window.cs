@@ -51,18 +51,18 @@ namespace ConsoleApp3
             #region Kecoak
             var cockroach = new Asset3d(new Vector3(1, 1, 1));
 
-            var antena = new Asset3d(new Vector3(0, 0, 0));
-            antena.prepareVertices();
-            antena.setControlCoordinate(-2.4f, -0.2f, -0.65f);
-            antena.setControlCoordinate(-2.7f, -0.3f, -0.55f);
-            antena.setControlCoordinate(-2.73f, -0.255f, -0.4f);
-            antena.setControlCoordinate(-2.78f, -0.35f, -0.4f);
-            antena.setControlCoordinate(-2.80f, -0.28f, -0.3f);
-            antena.setControlCoordinate(-3.98f, -0.24f, -0.175f);
-            List<Vector3> _verticesBazier2 = antena.createCurveBazier();
-            antena.setVertices(_verticesBazier2);
-            antena.translate(3.2f, 0.25f, 2.2f);
-            cockroach.child.Add(antena);
+            var angin = new Asset3d(new Vector3(0, 0, 0));
+            angin.prepareVertices();
+            angin.setControlCoordinate(-2.4f, -0.2f, -0.65f);
+            angin.setControlCoordinate(-2.7f, -0.3f, -0.55f);
+            angin.setControlCoordinate(-2.73f, -0.255f, -0.4f);
+            angin.setControlCoordinate(-2.78f, -0.35f, -0.4f);
+            angin.setControlCoordinate(-2.80f, -0.28f, -0.3f);
+            angin.setControlCoordinate(-3.98f, -0.24f, -0.175f);
+            List<Vector3> angin_bezier = angin.createCurveBazier();
+            angin.setVertices(angin_bezier);
+            angin.translate(4.2f, 0.25f, -2.2f);
+            cockroach.child.Add(angin);
 
             // KAKI 1
             var cube1 = new Asset3d(new Vector3(0.5f, 0.5f, 0.5f));
@@ -136,6 +136,19 @@ namespace ConsoleApp3
             wings2.rotate(Vector3.Zero, Vector3.UnitY, -90);
             wings2.rotate(Vector3.Zero, Vector3.UnitZ, -45);
             cockroach.child.Add(wings2);
+
+            var angin2 = new Asset3d(new Vector3(0, 0, 0));
+            angin2.prepareVertices();
+            angin2.setControlCoordinate(-2.4f, -0.2f, -0.65f);
+            angin2.setControlCoordinate(-2.7f, -0.3f, -0.55f);
+            angin2.setControlCoordinate(-2.73f, -0.255f, -0.4f);
+            angin2.setControlCoordinate(-2.78f, -0.35f, -0.4f);
+            angin2.setControlCoordinate(-2.80f, -0.28f, -0.3f);
+            angin2.setControlCoordinate(-3.98f, -0.24f, -0.175f);
+            List<Vector3> angin_bezier2 = angin2.createCurveBazier();
+            angin2.setVertices(angin_bezier2);
+            angin2.translate(4.2f, 0.25f, 2.2f);
+            cockroach.child.Add(angin2);
 
             cockroach.child.Add(cube1);
             cockroach.child.Add(cube2);
